@@ -12,4 +12,4 @@ jobs:
       - uses: actions/checkout@v3
       - id: hoge
         uses: ./.github/actions/test
-      - run: echo ${{ steps.outputs.hoge.POD_NAME }}
+      - run: echo ${{ steps.outputs.step-3.POD_NAME }}
