@@ -5,30 +5,18 @@ on:
       - main
 
 jobs:
-  job-a:
-    name: Job A
+  job:
+    name: test-job
     runs-on: ubuntu-latest
     steps:
-      - run: echo "POD_NAME=a" >> $GITHUB_OUTPUT
-        id: job-01
-
-  job-b:
-    name: Job B
-    runs-on: ubuntu-latest
-    if: false
-    steps:
-      - run: echo "POD_NAME=b" >> $GITHUB_OUTPUT
-        id: job-02
-
-  job-ab:
-    name: Job AB
-    runs-on: ubuntu-latest
-    needs: [ job-a, job-b ]
-    if: |
-      always()
-      && contains(needs.*.result, 'success')
-      && !contains(needs.*.result, 'failure')
-    steps:
-      - run: |
-          echo ${{ steps.job-01.outputs.POD_NAME }}
-          echo ${{ steps.job-02.outputs.POD_NAME }}
+      - id: step-01
+        run: echo "POD_NAME=a" >> $GITHUB_OUTPUT
+      - id: step-02
+        run: echo "POD_NAME=b" >> $GITHUB_OUTPUT
+      - id: step-3
+        env:
+          STEP_01_RESULT: ${{ steps.step-01.outputs.POD_NAME }}
+          STEP_02_RESULT: ${{ steps.step-01.outputs.POD_NAME }}
+        run: |
+          echo $STEP_01_RESULT
+          echo $STEP_01_RESULT
