@@ -11,7 +11,6 @@ runs:
     - name: deploy vald from remote charts
       id: deploy_vald_remote
       shell: bash
-      if: 'false'
       run: echo "POD_NAME=a" >> $GITHUB_OUTPUT
     - name: deploy vald from local charts
       id: deploy_vald_local
