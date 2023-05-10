@@ -10,6 +10,7 @@ runs:
   steps:
     - id: step-01
       shell: bash
+      if: 'false'
       run: echo "POD_NAME=a" >> $GITHUB_OUTPUT
     - id: step-02
       shell: bash
