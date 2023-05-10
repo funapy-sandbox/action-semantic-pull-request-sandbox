@@ -4,27 +4,29 @@ inputs: {}
 outputs:
   POD_NAME:
     description: "a pod name that waited for"
-    value: ${{ steps.step-3.outputs.POD_NAME }}
+    value: ${{ steps.detect_pod_name.outputs.POD_NAME }}
 runs:
   using: "composite"
   steps:
-    - id: step-01
+    - name: deploy vald from remote charts
+      id: deploy_vald_remote
       shell: bash
       if: 'false'
       run: echo "POD_NAME=a" >> $GITHUB_OUTPUT
-    - id: step-02
+    - name: deploy vald from local charts
+      id: deploy_vald_local
       shell: bash
       run: echo "POD_NAME=b" >> $GITHUB_OUTPUT
-    - id: step-3
+    - id: detect_pod_name
       shell: bash
       env:
-        STEP_01_RESULT: ${{ steps.step-01.outputs.POD_NAME }}
-        STEP_02_RESULT: ${{ steps.step-02.outputs.POD_NAME }}
+        DEPLOY_VALD_REMOTE_RESULT: ${{ steps.deploy_vald_remote.outputs.POD_NAME }}
+        DEPLOY_VALD_LOCAL_RESULT:  ${{ steps.deploy_vald_local.outputs.POD_NAME }}
       run: |
-        if [ -n "$STEP_01_RESULT" ]; then
+        if [ -n "$DEPLOY_VALD_REMOTE_RESULT" ]; then
           echo a
-          echo "POD_NAME=${STEP_01_RESULT}" >> $GITHUB_OUTPUT
+          echo "POD_NAME=${DEPLOY_VALD_REMOTE_RESULT}" >> $GITHUB_OUTPUT
         else
           echo b
-          echo "POD_NAME=${STEP_02_RESULT}" >> $GITHUB_OUTPUT
+          echo "POD_NAME=${DEPLOY_VALD_LOCAL_RESULT}" >> $GITHUB_OUTPUT
         fi
