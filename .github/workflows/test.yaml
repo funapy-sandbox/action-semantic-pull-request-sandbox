@@ -18,5 +18,9 @@ jobs:
           STEP_01_RESULT: ${{ steps.step-01.outputs.POD_NAME }}
           STEP_02_RESULT: ${{ steps.step-02.outputs.POD_NAME }}
         run: |
-          echo $STEP_01_RESULT
-          echo $STEP_02_RESULT
+          if [ -n "$STEP_01_RESULT" ]; then
+            echo $STEP_01_RESULT
+          fi
+          if [ -n "$STEP_02_RESULT" ]; then
+            echo $STEP_02_RESULT
+          fi
