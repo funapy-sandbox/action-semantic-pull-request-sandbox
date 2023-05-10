@@ -21,7 +21,9 @@ runs:
         STEP_02_RESULT: ${{ steps.step-02.outputs.POD_NAME }}
       run: |
         if [ -n "$STEP_01_RESULT" ]; then
+          echo a
           echo "POD_NAME=${STEP_01_RESULT}" >> $GITHUB_OUTPUT
         else
+          echo b
           echo "POD_NAME=${STEP_02_RESULT}" >> $GITHUB_OUTPUT
         fi
