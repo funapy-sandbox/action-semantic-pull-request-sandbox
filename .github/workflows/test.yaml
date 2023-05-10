@@ -9,18 +9,6 @@ jobs:
     name: test-job
     runs-on: ubuntu-latest
     steps:
-      - id: step-01
-        run: echo "POD_NAME=a" >> $GITHUB_OUTPUT
-      - id: step-02
-        run: echo "POD_NAME=b" >> $GITHUB_OUTPUT
-      - id: step-3
-        env:
-          STEP_01_RESULT: ${{ steps.step-01.outputs.POD_NAME }}
-          STEP_02_RESULT: ${{ steps.step-02.outputs.POD_NAME }}
-        run: |
-          if [ -n "$STEP_01_RESULT" ]; then
-            echo $STEP_01_RESULT
-          fi
-          if [ -n "$STEP_02_RESULT" ]; then
-            echo $STEP_02_RESULT
-          fi
+      - id: hoge
+        uses: ./.github/actions/test
+      - run: echo ${{ steps.outputs.hoge.POD_NAME }}

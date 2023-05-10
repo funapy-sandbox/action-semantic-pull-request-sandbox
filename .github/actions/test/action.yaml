@@ -1,0 +1,28 @@
+name: "Setting E2E test environment"
+description: "A workflow to set E2E test environment"
+inputs: {}
+outputs:
+  POD_NAME:
+    description: "a pod name that waited for"
+    value: ${{ steps.step-3.outputs.POD_NAME }}
+runs:
+  using: "composite"
+  steps:
+    - id: step-01
+      shell: bash
+      run: echo "POD_NAME=a" >> $GITHUB_OUTPUT
+    - id: step-02
+      shell: bash
+      run: echo "POD_NAME=b" >> $GITHUB_OUTPUT
+    - id: step-3
+      shell: bash
+      env:
+        STEP_01_RESULT: ${{ steps.step-01.outputs.POD_NAME }}
+        STEP_02_RESULT: ${{ steps.step-02.outputs.POD_NAME }}
+      run: |
+        if [ -n "$STEP_01_RESULT" ]; then
+          echo "POD_NAME=${STEP_01_RESULT}" >> $GITHUB_OUTPUT
+        fi
+        if [ -n "$STEP_02_RESULT" ]; then
+          echo "POD_NAME=${STEP_02_RESULT}" >> $GITHUB_OUTPUT
+        fi
