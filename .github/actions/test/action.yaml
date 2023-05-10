@@ -22,7 +22,6 @@ runs:
       run: |
         if [ -n "$STEP_01_RESULT" ]; then
           echo "POD_NAME=${STEP_01_RESULT}" >> $GITHUB_OUTPUT
-        fi
-        if [ -n "$STEP_02_RESULT" ]; then
+        else
           echo "POD_NAME=${STEP_02_RESULT}" >> $GITHUB_OUTPUT
         fi
