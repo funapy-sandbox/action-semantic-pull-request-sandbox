@@ -2,7 +2,7 @@ name: My workflow
 on: 
   push:
     branches:
-      - main
+      - project/*
 
 jobs:
   job:
@@ -10,6 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - id: hoge
-        uses: ./.github/actions/test
-      - run: echo ${{ steps.hoge.outputs.POD_NAME }}
+      - run: "echo hello"
