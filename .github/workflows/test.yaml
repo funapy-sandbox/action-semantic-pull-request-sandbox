@@ -2,11 +2,16 @@ name: My workflow
 on: 
   push:
     branches:
-      - project/*
-    tags:
-      - "*.*.*"
-      - "v*.*.*"
-      - "dev-v*.*.*"
+      - main
+    paths:
+      - ".github/workflows/test.yaml"
+      - ".github/actions/checkout/actions.yaml"
+      - ".github/actions/test/actions.yaml"
+  pull_request:
+    paths:
+      - ".github/workflows/test.yaml"
+      - ".github/actions/checkout/actions.yaml"
+      - ".github/actions/test/actions.yaml"
 
 jobs:
   job:
