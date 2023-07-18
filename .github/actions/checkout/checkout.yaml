@@ -1,0 +1,16 @@
+name: "Setting github environment"
+description: "A workflow to set github environment"
+inputs: {}
+runs:
+  using: "composite"
+  steps:
+    - name: checkout
+      use: actions/checkout@v3
+    - name: setup github config
+      shell: bash
+      run: |
+        git config --global --add safe.directory ${GITHUB_WORKSPACE}
+    - name: check github config
+      shell: bash
+      run: |
+        git config
