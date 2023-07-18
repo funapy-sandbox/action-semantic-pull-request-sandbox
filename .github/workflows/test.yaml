@@ -2,16 +2,21 @@ name: My workflow
 on: 
   push:
     branches:
-      - project/*
-    tags:
-      - "*.*.*"
-      - "v*.*.*"
-      - "dev-v*.*.*"
+      - main
+    paths:
+      - ".github/workflows/test.yaml"
+      - ".github/actions/checkout/actions.yaml"
+      - ".github/actions/test/actions.yaml"
+  pull_request:
+    paths:
+      - ".github/workflows/test.yaml"
+      - ".github/actions/checkout/actions.yaml"
+      - ".github/actions/test/actions.yaml"
 
 jobs:
   job:
     name: test-job
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/checkout
+      - uses: "./.github/actions/checkout"
       - run: "echo hello"
