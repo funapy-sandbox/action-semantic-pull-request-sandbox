@@ -34,5 +34,5 @@ jobs:
         run: |
           DOCKER_BUILDKIT=1 docker buildx build --platform ${PLATFORMS} --builder ${BUILDER} -f ./dockers/Dockerfile
           echo ${PLATFORMS}
-        with:
+        env:
           BUILDER: ${{ steps.buildx.outputs.name }}
