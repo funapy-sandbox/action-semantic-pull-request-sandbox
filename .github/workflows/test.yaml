@@ -32,7 +32,7 @@ jobs:
           buildkitd-flags: "--debug --oci-worker-gc=false"
       - name: Build
         run: |
-          DOCKER_BUILDKIT=1 docker buildx build --platform ${PLATFORMS} --builder ${BUILDER} -f ./dockers/Dockerfile
+          DOCKER_BUILDKIT=1 docker buildx build --platform ${PLATFORMS} --builder ${BUILDER} -f ./dockers/Dockerfile .
           echo ${PLATFORMS}
         env:
           BUILDER: ${{ steps.buildx.outputs.name }}
