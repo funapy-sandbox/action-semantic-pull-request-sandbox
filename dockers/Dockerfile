@@ -1,5 +1,5 @@
-# FROM --platform=${BUILDPLATFORM} ubuntu:devel AS builder
-FROM --platform=${TARGETPLATFORM} ubuntu:devel AS builder
+FROM --platform=${BUILDPLATFORM} ubuntu:devel AS builder
+# FROM --platform=${TARGETPLATFORM} ubuntu:devel AS builder
 
 
-RUN echo "${BUILDPLATFORM}"
+RUN echo "${BUILDPLATFORM}" && echo "${TARGETPLATFORM}"
