@@ -1,4 +1,4 @@
-FROM --platform=${BUILDPLATFORM} ubuntu:devel AS builder
+FROM --platform=${TARGETPLATFORM} ubuntu:devel AS builder
 # FROM --platform=${TARGETPLATFORM} ubuntu:devel AS builder
 
 # ARG TARGETPLATFORM \
@@ -12,3 +12,5 @@ ARG BUILDPLATFORM \
 
 RUN echo "TARGETPLATFORM=${TARGETPLATFORM} TARGETARCH=${TARGETARCH}" && \
     echo "BUILDPLATFORM=${BUILDPLATFORM} BUILDARCH=${BUILDARCH}"
+
+RUN uname -a
