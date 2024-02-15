@@ -32,6 +32,8 @@ jobs:
           buildkitd-flags: "--debug --oci-worker-gc=false"
       - name: docker run
         run: |
+          ls /usr/bin
+
           which qemu-aarch64-static
 
           docker run --rm -v /usr/bin/qemu-aarch64-static:/usr/bin/qemu-aarch64-static vdaas/vald-agent-ngt:v1.7.10
